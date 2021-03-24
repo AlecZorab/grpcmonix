@@ -1,31 +1,25 @@
 import scalapb.compiler.Version.scalapbVersion
 
-organization in ThisBuild := "beyondthelines"
-version in ThisBuild := "0.0.7"
-bintrayOrganization in ThisBuild := Some(organization.value)
-bintrayRepository in ThisBuild := "maven"
-bintrayPackageLabels in ThisBuild := Seq("scala", "protobuf", "grpc", "monix")
-licenses in ThisBuild := ("MIT", url("http://opensource.org/licenses/MIT")) :: Nil
-
-scalaVersion in ThisBuild := "2.12.4"
+organization in ThisBuild := "io.zorab"
+version in ThisBuild := "0.1.0"
+scalaVersion in ThisBuild := "2.12.12"
 
 lazy val runtime = (project in file("runtime"))
   .settings(
-    crossScalaVersions := Seq("2.12.4", "2.11.11"),
+    scalaVersion := "2.13.3",
     name := "GrpcMonixRuntime",
     libraryDependencies ++= Seq(
-      "com.thesamet.scalapb" %% "scalapb-runtime-grpc" % scalapbVersion,
-      "io.monix"             %% "monix"                % "2.3.3"
+      "com.thesamet.scalapb" %% "scalapb-runtime-grpc" % scalapb.compiler.Version.scalapbVersion,
+      "io.monix" %% "monix" % "3.2.2"
     )
   )
 
 lazy val generator = (project in file("generator"))
   .settings(
-    crossScalaVersions := Seq("2.12.4", "2.10.6"),
     name := "GrpcMonixGenerator",
+    crossScalaVersions := Seq("2.12.12", "2.10.6"),
     libraryDependencies ++= Seq(
-      "com.thesamet.scalapb" %% "compilerplugin"       % scalapbVersion,
-      "com.thesamet.scalapb" %% "scalapb-runtime-grpc" % scalapbVersion
-    )
+      "com.thesamet.scalapb" %% "compilerplugin" % scalapb.compiler.Version.scalapbVersion % "provided",
+      "com.thesamet.scalapb" %% "scalapb-runtime-grpc" % scalapb.compiler.Version.scalapbVersion % "provided",
+    ),
   )
-

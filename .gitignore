@@ -2,3 +2,7 @@
 *.log
 target/
 */target/
+.bloop
+.metals
+.vscode
+metals.sbt
