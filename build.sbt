@@ -1,7 +1,7 @@
 import scalapb.compiler.Version.scalapbVersion
 
 organization in ThisBuild := "io.zorab"
-version in ThisBuild := "0.1.0"
+version in ThisBuild := "0.1.1"
 scalaVersion in ThisBuild := "2.12.12"
 
 lazy val runtime = (project in file("runtime"))
